@@ -4,3 +4,11 @@ $path = ‘cert:\localMachine\my\’ + $cert.thumbprint
 Export-PfxCertificate -cert $path -FilePath c:\Temp\locahost.pfx -Password $pwd
 Export-Certificate -Cert $cert -FilePath "C:\Temp\localhost.crt"
 Import-Certificate -FilePath "C:\Temp\localhost.crt" -certstorelocation cert:\localmachine\root
+
+
+
+
+Del c:\inetpub\SmartClinic\appsecrets.json
+Copy c:\temp\appsecrets.json.clearText c:\inetpub\SmartClinic
+Fget setuptest/UpdateSmartClinic.exe C:\SmartClinic\Setup -Update.12
+C:\SmartClinic\Setup\UpdateSmartClinic.exe
