@@ -1,0 +1,6 @@
+$cert = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname localhost
+$pwd = ConvertTo-SecureString -String ‘password1234’ -Force -AsPlainText
+$path = ‘cert:\localMachine\my\’ + $cert.thumbprint
+Export-PfxCertificate -cert $path -FilePath c:\Temp\locahost.pfx -Password $pwd
+Export-Certificate -Cert $cert -FilePath "C:\Temp\localhost.crt"
+Import-Certificate -FilePath "C:\Temp\localhost.crt" -certstorelocation cert:\localmachine\root
